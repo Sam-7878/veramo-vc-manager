@@ -1,49 +1,193 @@
 {
-  "IMyAgentPlugin": {
+  "IVCManager": {
     "components": {
       "schemas": {
-        "IMyAgentPluginFooArgs": {
+        "IVCManagerDeleteArgs": {
           "type": "object",
           "properties": {
-            "did": {
-              "type": "string",
-              "description": "Decentralized identifier"
-            },
-            "bar": {
-              "type": "string",
-              "description": "Lorem ipsum"
-            },
-            "foo": {
-              "type": "string",
-              "description": "Dolorem"
+            "id": {
+              "type": "number",
+              "description": "Id of VC"
             }
           },
           "required": [
-            "did",
-            "bar",
-            "foo"
+            "id"
           ],
-          "description": "Arguments needed for  {@link  MyAgentPlugin.myPluginFoo } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
+          "description": "Arguments needed for  {@link  VCManager.deleteVC  } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
         },
-        "IMyAgentPluginFooResult": {
+        "IVCManagerGetArgs": {
           "type": "object",
           "properties": {
-            "foobar": {
+            "id": {
+              "type": "number",
+              "description": "Id of VC"
+            }
+          },
+          "required": [
+            "id"
+          ],
+          "description": "Arguments needed for  {@link  VCManager.getVC  } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
+        },
+        "IVCManagerGetResult": {
+          "type": "object",
+          "properties": {
+            "vc": {
+              "anyOf": [
+                {
+                  "$ref": "#/components/schemas/VerifiableCredential"
+                },
+                {
+                  "type": "null"
+                }
+              ]
+            }
+          },
+          "required": [
+            "vc"
+          ],
+          "description": "Result of  {@link  VCManager.getVC  } \nTo be able to export a plugin schema, your plugin return types need to be Promises of a named type or interface."
+        },
+        "VerifiableCredential": {
+          "type": "object",
+          "properties": {
+            "@context": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "id": {
               "type": "string"
             },
-            "baz": {}
+            "type": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "issuer": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id"
+              ]
+            },
+            "issuanceDate": {
+              "type": "string"
+            },
+            "expirationDate": {
+              "type": "string"
+            },
+            "credentialSubject": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                }
+              }
+            },
+            "credentialStatus": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "type": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "type"
+              ]
+            },
+            "proof": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                }
+              }
+            }
           },
-          "description": "Result of  {@link  MyAgentPlugin.myPluginFoo } \nTo be able to export a plugin schema, your plugin return types need to be Promises of a named type or interface."
+          "required": [
+            "@context",
+            "credentialSubject",
+            "issuanceDate",
+            "issuer",
+            "proof",
+            "type"
+          ],
+          "description": "Represents a signed Verifiable Credential payload (includes proof). See  {@link  https://www.w3.org/TR/vc-data-model/#credentials | VC data model }"
+        },
+        "IVCManagerListResult": {
+          "type": "object",
+          "properties": {
+            "vcs": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/VerifiableCredential"
+              }
+            }
+          },
+          "required": [
+            "vcs"
+          ],
+          "description": "Result of  {@link  VCManager.listVCS  } \nTo be able to export a plugin schema, your plugin return types need to be Promises of a named type or interface."
+        },
+        "IVCManagerSaveArgs": {
+          "type": "object",
+          "properties": {
+            "vc": {
+              "$ref": "#/components/schemas/VerifiableCredential",
+              "description": "Id of VC"
+            }
+          },
+          "required": [
+            "vc"
+          ],
+          "description": "Arguments needed for  {@link  VCManager.saveVC  } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
         }
       },
       "methods": {
-        "myPluginFoo": {
-          "description": "Your plugin method description",
+        "deleteVC": {
+          "description": "",
           "arguments": {
-            "$ref": "#/components/schemas/IMyAgentPluginFooArgs"
+            "$ref": "#/components/schemas/IVCManagerDeleteArgs"
           },
           "returnType": {
-            "$ref": "#/components/schemas/IMyAgentPluginFooResult"
+            "type": "boolean"
+          }
+        },
+        "getVC": {
+          "description": "Your plugin method description",
+          "arguments": {
+            "$ref": "#/components/schemas/IVCManagerGetArgs"
+          },
+          "returnType": {
+            "$ref": "#/components/schemas/IVCManagerGetResult"
+          }
+        },
+        "listVCS": {
+          "description": "",
+          "arguments": {
+            "type": "object"
+          },
+          "returnType": {
+            "$ref": "#/components/schemas/IVCManagerListResult"
+          }
+        },
+        "saveVC": {
+          "description": "",
+          "arguments": {
+            "$ref": "#/components/schemas/IVCManagerSaveArgs"
+          },
+          "returnType": {
+            "type": "boolean"
           }
         }
       }

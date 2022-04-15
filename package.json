@@ -1,12 +1,12 @@
 {
-  "name": "veramo-plugin",
+  "name": "vc-manager",
   "version": "1.0.0",
   "source": "src/index.ts",
   "main": "build/index.js",
   "types": "build/index.d.ts",
   "veramo": {
     "pluginInterfaces": {
-      "IMyAgentPlugin": "./src/types/IMyAgentPlugin.ts"
+      "IVCManager": "./src/types/IVCManager.ts"
     }
   },
   "scripts": {
@@ -22,6 +22,7 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "27.4.1",
+    "@types/uuid": "^8.3.4",
     "@veramo/cli": "3.1.1",
     "jest": "27.5.1",
     "ts-jest": "27.1.4",
@@ -35,8 +36,18 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@veramo/core": "^3.0.0",
-    "@veramo/did-manager": "^3.0.0",
-    "@veramo/key-manager": "^3.0.0"
+    "@veramo/core": "^3.1.0",
+    "@veramo/credential-w3c": "^3.1.0",
+    "@veramo/data-store": "^3.1.0",
+    "@veramo/did-comm": "^3.1.0",
+    "@veramo/did-jwt": "^3.1.0",
+    "@veramo/did-manager": "^3.1.0",
+    "@veramo/did-provider-ethr": "^3.1.0",
+    "@veramo/did-provider-web": "^3.1.0",
+    "@veramo/did-resolver": "^3.1.0",
+    "@veramo/key-manager": "^3.1.0",
+    "@veramo/kms-local": "^3.1.0",
+    "@veramo/message-handler": "^3.1.0",
+    "uuid": "^8.3.2"
   }
 }

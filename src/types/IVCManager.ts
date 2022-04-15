@@ -1,5 +1,5 @@
 import { IPluginMethodMap, IAgentContext, IDIDManager, IResolver } from '@veramo/core'
-
+import { VerifiableCredential } from '@veramo/core'
 /**
  * My Agent Plugin description.
  *
@@ -20,7 +20,7 @@ import { IPluginMethodMap, IAgentContext, IDIDManager, IResolver } from '@veramo
  *
  * @beta
  */
-export interface IMyAgentPlugin extends IPluginMethodMap {
+export interface IVCManager extends IPluginMethodMap {
   /**
    * Your plugin method description
    *
@@ -29,51 +29,70 @@ export interface IMyAgentPlugin extends IPluginMethodMap {
    *   Declaring a context type here lets other developers know which other plugins
    *   need to also be installed for this method to work.
    */
-  myPluginFoo(args: IMyAgentPluginFooArgs, context: IRequiredContext): Promise<IMyAgentPluginFooResult>
+  getVC(args: IVCManagerGetArgs): Promise<IVCManagerGetResult>
+  saveVC(args: IVCManagerSaveArgs): Promise<boolean>
+  deleteVC(args: IVCManagerDeleteArgs): Promise<boolean>
+  listVCS(): Promise<IVCManagerListResult>
 }
 
 /**
- * Arguments needed for {@link MyAgentPlugin.myPluginFoo}
+ * Arguments needed for {@link VCManager.getVC}
  * To be able to export a plugin schema, your plugin methods should use an `args` parameter of a
  * named type or interface.
  *
  * @beta
  */
-export interface IMyAgentPluginFooArgs {
+export interface IVCManagerGetArgs {
   /**
-   * Decentralized identifier
+   * Id of VC
    */
-  did: string
-
+  id: number
+}
+/**
+ * Arguments needed for {@link VCManager.deleteVC}
+ * To be able to export a plugin schema, your plugin methods should use an `args` parameter of a
+ * named type or interface.
+ *
+ * @beta
+ */
+export interface IVCManagerDeleteArgs {
   /**
-   * Lorem ipsum
+   * Id of VC
    */
-  bar: string
-
+  id: number
+}
+/**
+ * Arguments needed for {@link VCManager.saveVC}
+ * To be able to export a plugin schema, your plugin methods should use an `args` parameter of a
+ * named type or interface.
+ *
+ * @beta
+ */
+export interface IVCManagerSaveArgs {
   /**
-   * Dolorem
+   * Id of VC
    */
-  foo: string
+  vc: VerifiableCredential
 }
 
 /**
- * Result of {@link MyAgentPlugin.myPluginFoo}
+ * Result of {@link VCManager.getVC}
  * To be able to export a plugin schema, your plugin return types need to be Promises of a
  * named type or interface.
  *
  * @beta
  */
-export type IMyAgentPluginFooResult = {
-  foobar?: string
-  baz?: any
+export type IVCManagerGetResult = {
+  vc: VerifiableCredential | null
 }
 
 /**
- * This context describes the requirements of this plugin.
- * For this plugin to function properly, the agent needs to also have other plugins installed that implement the
- * interfaces declared here.
- * You can also define requirements on a more granular level, for each plugin method or event handler of your plugin.
- * 
+ * Result of {@link VCManager.listVCS}
+ * To be able to export a plugin schema, your plugin return types need to be Promises of a
+ * named type or interface.
+ *
  * @beta
  */
-export type IRequiredContext = IAgentContext<IResolver & IDIDManager>
+export type IVCManagerListResult = {
+  vcs: VerifiableCredential[]
+}
