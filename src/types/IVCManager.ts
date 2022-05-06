@@ -1,44 +1,57 @@
 import { IPluginMethodMap, IAgentContext, IDIDManager, IResolver } from '@veramo/core'
 import { VerifiableCredential } from '@veramo/core'
+import { MemoryVCStore } from '../vc-store/vc-store'
+import { AbstractVCStore } from '../vc-store/abstract-vc-store'
 /**
- * My Agent Plugin description.
+ * IVCManager
  *
- * This is the interface that describes what your plugin can do.
- * The methods listed here, will be directly available to the veramo agent where your plugin is going to be used.
- * Depending on the agent configuration, other agent plugins, as well as the application where the agent is used
- * will be able to call these methods.
+ * This is a plugin that enables management of VCs with Veramo client. It is similar to DIDManager and KeyManager plugins.
+ * This plugin comes with {@link AbstractVCStore} and an example use {@link MemoryVCStore} where VCs are stored in memory.
+ * AbstractVCStore can be extended to suit the needs.
  *
- * To build a schema for your plugin using standard tools, you must link to this file in package.json.
- * Example:
- * ```
- * "veramo": {
- *    "pluginInterfaces": {
- *      "IMyAgentPlugin": "./src/types/IMyAgentPlugin.ts"
- *    }
- *  },
- * ```
  *
  * @beta
  */
 export interface IVCManager extends IPluginMethodMap {
   /**
-   * Your plugin method description
+   * Function to retrieve a VC with ID
    *
-   * @param args - Input parameters for this method
-   * @param context - The required context where this method can run.
-   *   Declaring a context type here lets other developers know which other plugins
-   *   need to also be installed for this method to work.
+   * @param args - {@link IVCManagerGetArgs}
+   *
+   * @returns {@link IVCManagerGetResult}
    */
   getVC(args: IVCManagerGetArgs): Promise<IVCManagerGetResult>
+
+  /**
+   * Function to save a VC
+   *
+   * @param args - {@link IVCManagerSaveArgs}
+   *
+   * @returns {boolean}
+   */
   saveVC(args: IVCManagerSaveArgs): Promise<boolean>
+
+  /**
+   * Function to delete a VC with ID
+   *
+   * @param args - {@link IVCManagerDeleteArgs}
+   *
+   * @returns {boolean}
+   */
   deleteVC(args: IVCManagerDeleteArgs): Promise<boolean>
+
+  /**
+   *
+   *  Function to list all VCs
+   *
+   * @returns {@link IVCManagerListResult}
+   */
   listVCS(): Promise<IVCManagerListResult>
 }
 
 /**
+ *
  * Arguments needed for {@link VCManager.getVC}
- * To be able to export a plugin schema, your plugin methods should use an `args` parameter of a
- * named type or interface.
  *
  * @beta
  */
@@ -50,8 +63,6 @@ export interface IVCManagerGetArgs {
 }
 /**
  * Arguments needed for {@link VCManager.deleteVC}
- * To be able to export a plugin schema, your plugin methods should use an `args` parameter of a
- * named type or interface.
  *
  * @beta
  */
@@ -63,22 +74,18 @@ export interface IVCManagerDeleteArgs {
 }
 /**
  * Arguments needed for {@link VCManager.saveVC}
- * To be able to export a plugin schema, your plugin methods should use an `args` parameter of a
- * named type or interface.
  *
  * @beta
  */
 export interface IVCManagerSaveArgs {
   /**
-   * Id of VC
+   * VC
    */
   vc: VerifiableCredential
 }
 
 /**
  * Result of {@link VCManager.getVC}
- * To be able to export a plugin schema, your plugin return types need to be Promises of a
- * named type or interface.
  *
  * @beta
  */
@@ -88,8 +95,6 @@ export type IVCManagerGetResult = {
 
 /**
  * Result of {@link VCManager.listVCS}
- * To be able to export a plugin schema, your plugin return types need to be Promises of a
- * named type or interface.
  *
  * @beta
  */

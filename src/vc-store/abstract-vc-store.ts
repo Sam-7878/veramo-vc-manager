@@ -1,7 +1,7 @@
 import { VerifiableCredential } from '@veramo/core'
 
 /**
- * An abstract class for the {@link @veramo/vc-manager#VCManager} identifier store
+ * An abstract class for the {@link VCManager} VC store
  * @public
  */
 export abstract class AbstractVCStore {
