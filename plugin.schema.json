@@ -13,7 +13,7 @@
           "required": [
             "id"
           ],
-          "description": "Arguments needed for  {@link  VCManager.deleteVC  } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
+          "description": "Arguments needed for  {@link  VCManager.deleteVC  }"
         },
         "IVCManagerGetArgs": {
           "type": "object",
@@ -26,7 +26,7 @@
           "required": [
             "id"
           ],
-          "description": "Arguments needed for  {@link  VCManager.getVC  } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
+          "description": "Arguments needed for  {@link  VCManager.getVC  }"
         },
         "IVCManagerGetResult": {
           "type": "object",
@@ -45,27 +45,80 @@
           "required": [
             "vc"
           ],
-          "description": "Result of  {@link  VCManager.getVC  } \nTo be able to export a plugin schema, your plugin return types need to be Promises of a named type or interface."
+          "description": "Result of  {@link  VCManager.getVC  }"
         },
         "VerifiableCredential": {
           "type": "object",
           "properties": {
+            "proof": {
+              "$ref": "#/components/schemas/ProofType"
+            },
+            "issuer": {
+              "$ref": "#/components/schemas/IssuerType"
+            },
+            "credentialSubject": {
+              "$ref": "#/components/schemas/CredentialSubject"
+            },
+            "type": {
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
             "@context": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
+              "anyOf": [
+                {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                {
+                  "type": "string"
+                }
+              ]
+            },
+            "issuanceDate": {
+              "type": "string"
+            },
+            "expirationDate": {
+              "type": "string"
+            },
+            "credentialStatus": {
+              "$ref": "#/components/schemas/CredentialStatus"
             },
             "id": {
               "type": "string"
-            },
+            }
+          },
+          "required": [
+            "@context",
+            "credentialSubject",
+            "issuanceDate",
+            "issuer",
+            "proof"
+          ],
+          "description": "Represents a signed Verifiable Credential payload (includes proof), using a JSON representation. See  {@link  https://www.w3.org/TR/vc-data-model/#credentials | VC data model }"
+        },
+        "ProofType": {
+          "type": "object",
+          "properties": {
             "type": {
-              "type": "array",
-              "items": {
-                "type": "string"
-              }
-            },
-            "issuer": {
+              "type": "string"
+            }
+          },
+          "description": "A proof property of a Verifiable Credential or Presentation"
+        },
+        "IssuerType": {
+          "anyOf": [
+            {
               "type": "object",
               "properties": {
                 "id": {
@@ -76,53 +129,36 @@
                 "id"
               ]
             },
-            "issuanceDate": {
+            {
+              "type": "string"
+            }
+          ],
+          "description": "The issuer of a Credential or the holder of a Presentation.\n\nThe value of the issuer property MUST be either a URI or an object containing an id property. It is RECOMMENDED that the URI in the issuer or its id be one which, if de-referenced, results in a document containing machine-readable information about the issuer that can be used to verify the information expressed in the credential.\n\nSee  {@link  https://www.w3.org/TR/vc-data-model/#issuer | Issuer data model }"
+        },
+        "CredentialSubject": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "string"
+            }
+          },
+          "description": "The value of the credentialSubject property is defined as a set of objects that contain one or more properties that are each related to a subject of the verifiable credential. Each object MAY contain an id.\n\nSee  {@link  https://www.w3.org/TR/vc-data-model/#credential-subject | Credential Subject }"
+        },
+        "CredentialStatus": {
+          "type": "object",
+          "properties": {
+            "id": {
               "type": "string"
             },
-            "expirationDate": {
+            "type": {
               "type": "string"
-            },
-            "credentialSubject": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                }
-              }
-            },
-            "credentialStatus": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "string"
-                },
-                "type": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "id",
-                "type"
-              ]
-            },
-            "proof": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "string"
-                }
-              }
             }
           },
           "required": [
-            "@context",
-            "credentialSubject",
-            "issuanceDate",
-            "issuer",
-            "proof",
+            "id",
             "type"
           ],
-          "description": "Represents a signed Verifiable Credential payload (includes proof). See  {@link  https://www.w3.org/TR/vc-data-model/#credentials | VC data model }"
+          "description": "Used for the discovery of information about the current status of a verifiable credential, such as whether it is suspended or revoked. The precise contents of the credential status information is determined by the specific `credentialStatus` type definition, and varies depending on factors such as whether it is simple to implement or if it is privacy-enhancing.\n\nSee  {@link  https://www.w3.org/TR/vc-data-model/#status | Credential Status }"
         },
         "IVCManagerListResult": {
           "type": "object",
@@ -137,25 +173,25 @@
           "required": [
             "vcs"
           ],
-          "description": "Result of  {@link  VCManager.listVCS  } \nTo be able to export a plugin schema, your plugin return types need to be Promises of a named type or interface."
+          "description": "Result of  {@link  VCManager.listVCS  }"
         },
         "IVCManagerSaveArgs": {
           "type": "object",
           "properties": {
             "vc": {
               "$ref": "#/components/schemas/VerifiableCredential",
-              "description": "Id of VC"
+              "description": "VC"
             }
           },
           "required": [
             "vc"
           ],
-          "description": "Arguments needed for  {@link  VCManager.saveVC  } \nTo be able to export a plugin schema, your plugin methods should use an `args` parameter of a named type or interface."
+          "description": "Arguments needed for  {@link  VCManager.saveVC  }"
         }
       },
       "methods": {
         "deleteVC": {
-          "description": "",
+          "description": "Function to delete a VC with ID",
           "arguments": {
             "$ref": "#/components/schemas/IVCManagerDeleteArgs"
           },
@@ -164,7 +200,7 @@
           }
         },
         "getVC": {
-          "description": "Your plugin method description",
+          "description": "Function to retrieve a VC with ID",
           "arguments": {
             "$ref": "#/components/schemas/IVCManagerGetArgs"
           },
@@ -173,7 +209,7 @@
           }
         },
         "listVCS": {
-          "description": "",
+          "description": "Function to list all VCs",
           "arguments": {
             "type": "object"
           },
@@ -182,7 +218,7 @@
           }
         },
         "saveVC": {
-          "description": "",
+          "description": "Function to save a VC",
           "arguments": {
             "$ref": "#/components/schemas/IVCManagerSaveArgs"
           },

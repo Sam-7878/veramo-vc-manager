@@ -1,6 +1,6 @@
 {
-  "name": "vc-manager",
-  "version": "1.0.0",
+  "name": "@blockchain-lab-um/veramo-vc-manager",
+  "version": "1.0.1",
   "source": "src/index.ts",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -36,18 +36,10 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@veramo/core": "^3.1.0",
-    "@veramo/credential-w3c": "^3.1.0",
-    "@veramo/data-store": "^3.1.0",
-    "@veramo/did-comm": "^3.1.0",
-    "@veramo/did-jwt": "^3.1.0",
-    "@veramo/did-manager": "^3.1.0",
-    "@veramo/did-provider-ethr": "^3.1.0",
-    "@veramo/did-provider-web": "^3.1.0",
-    "@veramo/did-resolver": "^3.1.0",
-    "@veramo/key-manager": "^3.1.0",
-    "@veramo/kms-local": "^3.1.0",
-    "@veramo/message-handler": "^3.1.0",
+    "@veramo/core": "^3.1.6-next.137",
     "uuid": "^8.3.2"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
