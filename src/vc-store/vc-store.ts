@@ -4,14 +4,14 @@ import { AbstractVCStore } from './abstract-vc-store'
 export class MemoryVCStore extends AbstractVCStore {
   private vcs: Record<number, VerifiableCredential> = {}
 
-  async get({ id }: { id: number }): Promise<VerifiableCredential | null> {
-    const vc = this.vcs[id]
+  async get({ id }: { id: string }): Promise<VerifiableCredential | null> {
+    const vc = this.vcs[0]
     if (!vc) return null
     return vc
   }
 
-  async delete({ id }: { id: number }) {
-    delete this.vcs[id]
+  async delete({ id }: { id: string }) {
+    //delete this.vcs[id]
     return true
   }
 
@@ -20,7 +20,7 @@ export class MemoryVCStore extends AbstractVCStore {
     return true
   }
 
-  async list(): Promise<VerifiableCredential[]> {
+  async list(args: { querry?: any }): Promise<VerifiableCredential[]> {
     const safeVCs = Object.values(this.vcs).map((key) => {
       const safeVC = key
       return safeVC

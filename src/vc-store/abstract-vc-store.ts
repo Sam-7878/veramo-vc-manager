@@ -6,7 +6,7 @@ import { VerifiableCredential } from '@veramo/core'
  */
 export abstract class AbstractVCStore {
   abstract import(args: VerifiableCredential): Promise<boolean>
-  abstract get(args: { id: number }): Promise<VerifiableCredential | null>
-  abstract delete(args: { id: number }): Promise<boolean>
-  abstract list(): Promise<VerifiableCredential[]>
+  abstract get(args: { id: string }): Promise<VerifiableCredential | null>
+  abstract delete(args: { id: string }): Promise<boolean>
+  abstract list(args: { querry?: any }): Promise<VerifiableCredential[]>
 }

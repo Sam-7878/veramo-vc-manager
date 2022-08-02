@@ -6,6 +6,7 @@ import {
   IVCManagerSaveArgs,
   IVCManagerGetResult,
   IVCManagerListResult,
+  IVCManagerListArgs,
 } from '../types/IVCManager'
 import { schema } from '../index'
 import { AbstractVCStore } from '../vc-store/abstract-vc-store'
@@ -43,8 +44,8 @@ export class VCManager implements IAgentPlugin {
     const res = await this.store.delete({ id: args.id })
     return res
   }
-  public async listVCS(): Promise<IVCManagerListResult> {
-    const vcs = await this.store.list()
+  public async listVCS(args: IVCManagerListArgs): Promise<IVCManagerListResult> {
+    const vcs = await this.store.list({ querry: args.querry })
     return { vcs: vcs }
   }
 }

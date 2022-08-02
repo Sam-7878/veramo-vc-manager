@@ -46,7 +46,7 @@ export interface IVCManager extends IPluginMethodMap {
    *
    * @returns {@link IVCManagerListResult}
    */
-  listVCS(): Promise<IVCManagerListResult>
+  listVCS(args: IVCManagerListArgs): Promise<IVCManagerListResult>
 }
 
 /**
@@ -59,7 +59,7 @@ export interface IVCManagerGetArgs {
   /**
    * Id of VC
    */
-  id: number
+  id: string
 }
 /**
  * Arguments needed for {@link VCManager.deleteVC}
@@ -70,7 +70,14 @@ export interface IVCManagerDeleteArgs {
   /**
    * Id of VC
    */
-  id: number
+  id: string
+}
+
+export interface IVCManagerListArgs {
+  /**
+   * Id of VC
+   */
+  querry?: any
 }
 /**
  * Arguments needed for {@link VCManager.saveVC}
