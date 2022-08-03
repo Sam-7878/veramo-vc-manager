@@ -2,16 +2,16 @@ import { VerifiableCredential } from '@veramo/core'
 import { AbstractVCStore } from './abstract-vc-store'
 
 export class MemoryVCStore extends AbstractVCStore {
-  private vcs: Record<number, VerifiableCredential> = {}
+  private vcs: Record<string, VerifiableCredential> = {}
 
   async get({ id }: { id: string }): Promise<VerifiableCredential | null> {
-    const vc = this.vcs[0]
+    const vc = this.vcs[id]
     if (!vc) return null
     return vc
   }
 
   async delete({ id }: { id: string }) {
-    //delete this.vcs[id]
+    delete this.vcs[id]
     return true
   }
 
