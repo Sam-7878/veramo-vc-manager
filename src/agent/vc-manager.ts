@@ -45,7 +45,10 @@ export class VCManager implements IAgentPlugin {
     return res
   }
   public async listVCS(args: IVCManagerListArgs): Promise<IVCManagerListResult> {
-    const vcs = await this.store.list({ querry: args.querry })
+    let vcs = await this.store.list({ querry: args.querry })
+    if (args.querry && args.querry.issuer) {
+      vcs = vcs.filter((i) => i.issuer === args.querry.issuer)
+    }
     return { vcs: vcs }
   }
 }
