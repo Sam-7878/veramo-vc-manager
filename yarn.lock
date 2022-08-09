@@ -562,6 +562,13 @@
   resolved "https://registry.npmjs.org/@bitauth/libauth/-/libauth-1.18.1.tgz"
   integrity sha512-s7evdGbdGAnGkv7xt6mCbcWTTNvburc1Z9EX/8JKwcRLqofjDs7VAEz+RP3a8OGEo4MWFV6Ydqu/BeJjIA7Kdg==
 
+"@blockchain-lab-um/ssi-snap-types@^1.0.2":
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/@blockchain-lab-um/ssi-snap-types/-/ssi-snap-types-1.0.2.tgz#5b381bbe64af40725da5a3e4c1e4366f7cc0e23e"
+  integrity sha512-VKvQxehOXR5QvzSYCxM3fPg8+YwrBCrXNqIS5sWp0+NgE5bVZNssDpHVOFLbuFroWalf3oTGt6/uytt1K38umA==
+  dependencies:
+    "@veramo/core" "^3.1.6-next.146"
+
 "@did-core/data-model@^0.1.1-unstable.13":
   version "0.1.1-unstable.15"
   resolved "https://registry.npmjs.org/@did-core/data-model/-/data-model-0.1.1-unstable.15.tgz"
@@ -1917,6 +1924,16 @@
     events "^3.2.0"
     z-schema "^5.0.2"
 
+"@veramo/core@^3.1.6-next.146":
+  version "3.1.6-next.160"
+  resolved "https://registry.yarnpkg.com/@veramo/core/-/core-3.1.6-next.160.tgz#bf9ee182b0bcff60f9e80127eca841a14b3aa1bc"
+  integrity sha512-wz7bBtI4YSpnjzYIN0o4DovrCHhjHK5COl6tuqNw7GkeEXaJlQAldUNAyTeEYPCHgGKtvfvg1vl/9Il/qxUlPw==
+  dependencies:
+    debug "^4.3.3"
+    did-jwt-vc "^2.1.13"
+    events "^3.2.0"
+    z-schema "^5.0.2"
+
 "@veramo/credential-w3c@^3.1.0":
   version "3.1.0"
   resolved "https://registry.npmjs.org/@veramo/credential-w3c/-/credential-w3c-3.1.0.tgz"
@@ -3072,6 +3089,14 @@ did-jwt-vc@^2.1.12:
     did-jwt "^6.1.2"
     did-resolver "^3.2.2"
 
+did-jwt-vc@^2.1.13:
+  version "2.1.14"
+  resolved "https://registry.yarnpkg.com/did-jwt-vc/-/did-jwt-vc-2.1.14.tgz#0668354d986da7577b830e866bec961584df3c01"
+  integrity sha512-z3y1sVXi4jdgomK6ZAtAjfkWiRUeMHFfQQ+RMozWdpOW8ECvQlFJE95NmF3E6fpLEyafPthEBAsb1hm4uNcY2g==
+  dependencies:
+    did-jwt "^6.2.2"
+    did-resolver "^4.0.0"
+
 did-jwt@5.11.1, did-jwt@^5.11.1:
   version "5.11.1"
   resolved "https://registry.npmjs.org/did-jwt/-/did-jwt-5.11.1.tgz"
@@ -3124,6 +3149,24 @@ did-jwt@^6.1.2:
     multiformats "^9.6.5"
     uint8arrays "^3.0.0"
 
+did-jwt@^6.2.2:
+  version "6.3.0"
+  resolved "https://registry.yarnpkg.com/did-jwt/-/did-jwt-6.3.0.tgz#6c7380a69fff97f95101ce03519fd34c0ee43594"
+  integrity sha512-kvwCDY6KZJZn9/LK+X4Co+X1brnZWr6fnP1NRVReTgSPFyA+20oZ+VCsmSnzzYUoPkQ/Pl54uOMlmRw69z5zBg==
+  dependencies:
+    "@stablelib/ed25519" "^1.0.2"
+    "@stablelib/random" "^1.0.1"
+    "@stablelib/sha256" "^1.0.1"
+    "@stablelib/x25519" "^1.0.2"
+    "@stablelib/xchacha20poly1305" "^1.0.1"
+    bech32 "^2.0.0"
+    canonicalize "^1.0.8"
+    did-resolver "^4.0.0"
+    elliptic "^6.5.4"
+    js-sha3 "^0.8.0"
+    multiformats "^9.6.5"
+    uint8arrays "^3.0.0"
+
 did-resolver@3.1.3, did-resolver@^3.1.3:
   version "3.1.3"
   resolved "https://registry.npmjs.org/did-resolver/-/did-resolver-3.1.3.tgz"
@@ -3138,6 +3181,11 @@ did-resolver@^3.2.2:
   version "3.2.2"
   resolved "https://registry.yarnpkg.com/did-resolver/-/did-resolver-3.2.2.tgz#6f4e252a810f785d1b28a10265fad6dffee25158"
   integrity sha512-Eeo2F524VM5N3W4GwglZrnul2y6TLTwMQP3In62JdG34NZoqihYyOZLk+5wUW8sSgvIYIcJM8Dlt3xsdKZZ3tg==
+
+did-resolver@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/did-resolver/-/did-resolver-4.0.0.tgz#fc8f657b4cd7f44c2921051fb046599fbe7d4b31"
+  integrity sha512-/roxrDr9EnAmLs+s9T+8+gcpilMo+IkeytcsGO7dcxvTmVJ+0Rt60HtV8o0UXHhGBo0Q+paMH/0ffXz1rqGFYg==
 
 diff-sequences@^27.5.1:
   version "27.5.1"

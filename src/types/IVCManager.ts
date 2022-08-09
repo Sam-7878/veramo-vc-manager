@@ -2,6 +2,7 @@ import { IPluginMethodMap, IAgentContext, IDIDManager, IResolver } from '@veramo
 import { VerifiableCredential } from '@veramo/core'
 import { MemoryVCStore } from '../vc-store/vc-store'
 import { AbstractVCStore } from '../vc-store/abstract-vc-store'
+import { VCQuerry } from '@blockchain-lab-um/ssi-snap-types'
 /**
  * IVCManager
  *
@@ -77,7 +78,7 @@ export interface IVCManagerListArgs {
   /**
    * Id of VC
    */
-  querry?: any
+  querry?: VCQuerry
 }
 /**
  * Arguments needed for {@link VCManager.saveVC}

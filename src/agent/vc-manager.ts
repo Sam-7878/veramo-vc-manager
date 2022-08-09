@@ -10,6 +10,7 @@ import {
 } from '../types/IVCManager'
 import { schema } from '../index'
 import { AbstractVCStore } from '../vc-store/abstract-vc-store'
+import { isSubset } from '../util/subset'
 
 /**
  * {@inheritDoc IVCManager}
@@ -45,9 +46,9 @@ export class VCManager implements IAgentPlugin {
     return res
   }
   public async listVCS(args: IVCManagerListArgs): Promise<IVCManagerListResult> {
-    let vcs = await this.store.list({ querry: args.querry })
-    if (args.querry && args.querry.issuer) {
-      vcs = vcs.filter((i) => i.issuer === args.querry.issuer)
+    let vcs = await this.store.list()
+    if (args.querry) {
+      vcs = vcs.filter((i) => isSubset(i, args.querry))
     }
     return { vcs: vcs }
   }

@@ -164,8 +164,15 @@
           "type": "object",
           "properties": {
             "querry": {
+              "$ref": "#/components/schemas/VCQuerry",
               "description": "Id of VC"
             }
+          }
+        },
+        "VCQuerry": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string"
           }
         },
         "IVCManagerListResult": {

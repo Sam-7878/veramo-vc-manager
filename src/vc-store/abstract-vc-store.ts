@@ -8,5 +8,5 @@ export abstract class AbstractVCStore {
   abstract import(args: VerifiableCredential): Promise<boolean>
   abstract get(args: { id: string }): Promise<VerifiableCredential | null>
   abstract delete(args: { id: string }): Promise<boolean>
-  abstract list(args: { querry?: any }): Promise<VerifiableCredential[]>
+  abstract list(): Promise<VerifiableCredential[]>
 }

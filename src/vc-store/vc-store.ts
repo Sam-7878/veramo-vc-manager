@@ -20,7 +20,7 @@ export class MemoryVCStore extends AbstractVCStore {
     return true
   }
 
-  async list(args: { querry?: any }): Promise<VerifiableCredential[]> {
+  async list(): Promise<VerifiableCredential[]> {
     const safeVCs = Object.values(this.vcs).map((key) => {
       const safeVC = key
       return safeVC
