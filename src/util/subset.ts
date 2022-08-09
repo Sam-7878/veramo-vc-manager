@@ -1,8 +1,18 @@
-export const isSubset = (superObj: any, subObj: any): boolean => {
-  return Object.keys(subObj).every((ele) => {
-    if (typeof subObj[ele] == 'object') {
-      return isSubset(superObj[ele], subObj[ele])
-    }
-    return subObj[ele] === superObj[ele]
+export const isSubset = (superset: any, subset: any) => {
+  if (typeof superset !== 'object' || superset === null || typeof subset !== 'object' || subset === null) return false
+
+  return Object.keys(subset).every((key) => {
+    if (!superset.propertyIsEnumerable(key)) return false
+
+    const subsetItem = subset[key]
+    const supersetItem = superset[key]
+    if (
+      typeof subsetItem === 'object' && subsetItem !== null
+        ? !isSubset(supersetItem, subsetItem)
+        : supersetItem !== subsetItem
+    )
+      return false
+
+    return true
   })
 }

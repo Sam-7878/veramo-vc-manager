@@ -48,7 +48,10 @@ export class VCManager implements IAgentPlugin {
   public async listVCS(args: IVCManagerListArgs): Promise<IVCManagerListResult> {
     let vcs = await this.store.list()
     if (args.querry) {
-      vcs = vcs.filter((i) => isSubset(i, args.querry))
+      console.log('VCS:', vcs, 'Filtering: ', args.querry)
+      vcs = vcs.filter((i) => {
+        return isSubset(i, args.querry as object)
+      })
     }
     return { vcs: vcs }
   }
