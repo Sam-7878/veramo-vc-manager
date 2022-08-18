@@ -562,10 +562,10 @@
   resolved "https://registry.npmjs.org/@bitauth/libauth/-/libauth-1.18.1.tgz"
   integrity sha512-s7evdGbdGAnGkv7xt6mCbcWTTNvburc1Z9EX/8JKwcRLqofjDs7VAEz+RP3a8OGEo4MWFV6Ydqu/BeJjIA7Kdg==
 
-"@blockchain-lab-um/ssi-snap-types@^1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@blockchain-lab-um/ssi-snap-types/-/ssi-snap-types-1.0.2.tgz#5b381bbe64af40725da5a3e4c1e4366f7cc0e23e"
-  integrity sha512-VKvQxehOXR5QvzSYCxM3fPg8+YwrBCrXNqIS5sWp0+NgE5bVZNssDpHVOFLbuFroWalf3oTGt6/uytt1K38umA==
+"@blockchain-lab-um/ssi-snap-types@^1.0.7":
+  version "1.0.7"
+  resolved "https://registry.yarnpkg.com/@blockchain-lab-um/ssi-snap-types/-/ssi-snap-types-1.0.7.tgz#e89b64d21e829aff4a7ec8103bef08ac991fc6fa"
+  integrity sha512-0cxdMWcV+LyBCm+F2zngwpqq+NMIw6JBEOUyAEieABFj1AG9glPnsYisCXbHK9R/mUWRcJYGcoA7ujSlftYfcQ==
   dependencies:
     "@veramo/core" "^3.1.6-next.146"
 

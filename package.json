@@ -1,6 +1,6 @@
 {
   "name": "@blockchain-lab-um/veramo-vc-manager",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "source": "src/index.ts",
   "main": "build/index.js",
   "types": "build/index.d.ts",
@@ -36,7 +36,7 @@
     "LICENSE"
   ],
   "dependencies": {
-    "@blockchain-lab-um/ssi-snap-types": "^1.0.2",
+    "@blockchain-lab-um/ssi-snap-types": "^1.0.7",
     "@veramo/core": "^3.1.6-next.137",
     "uuid": "^8.3.2"
   },

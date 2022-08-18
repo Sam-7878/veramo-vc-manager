@@ -163,13 +163,13 @@
         "IVCManagerListArgs": {
           "type": "object",
           "properties": {
-            "querry": {
-              "$ref": "#/components/schemas/VCQuerry",
+            "query": {
+              "$ref": "#/components/schemas/VCQuery",
               "description": "Id of VC"
             }
           }
         },
-        "VCQuerry": {
+        "VCQuery": {
           "type": "object",
           "additionalProperties": {
             "type": "string"
