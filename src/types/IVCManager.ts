@@ -58,6 +58,10 @@ export interface IVCManager extends IPluginMethodMap {
  */
 export interface IVCManagerGetArgs {
   /**
+   * VCStore plugin
+   */
+  store: string
+  /**
    * Id of VC
    */
   id: string
@@ -69,12 +73,20 @@ export interface IVCManagerGetArgs {
  */
 export interface IVCManagerDeleteArgs {
   /**
+   * VCStore plugin
+   */
+  store: string
+  /**
    * Id of VC
    */
   id: string
 }
 
 export interface IVCManagerListArgs {
+  /**
+   * VCStore plugin
+   */
+  store: string
   /**
    * Id of VC
    */
@@ -86,6 +98,10 @@ export interface IVCManagerListArgs {
  * @beta
  */
 export interface IVCManagerSaveArgs {
+  /**
+   * VCStore plugin
+   */
+  store: string
   /**
    * VC
    */

@@ -5,12 +5,17 @@
         "IVCManagerDeleteArgs": {
           "type": "object",
           "properties": {
+            "store": {
+              "type": "string",
+              "description": "VCStore plugin"
+            },
             "id": {
               "type": "string",
               "description": "Id of VC"
             }
           },
           "required": [
+            "store",
             "id"
           ],
           "description": "Arguments needed for  {@link  VCManager.deleteVC  }"
@@ -18,12 +23,17 @@
         "IVCManagerGetArgs": {
           "type": "object",
           "properties": {
+            "store": {
+              "type": "string",
+              "description": "VCStore plugin"
+            },
             "id": {
               "type": "string",
               "description": "Id of VC"
             }
           },
           "required": [
+            "store",
             "id"
           ],
           "description": "Arguments needed for  {@link  VCManager.getVC  }"
@@ -163,11 +173,18 @@
         "IVCManagerListArgs": {
           "type": "object",
           "properties": {
+            "store": {
+              "type": "string",
+              "description": "VCStore plugin"
+            },
             "query": {
               "$ref": "#/components/schemas/VCQuery",
               "description": "Id of VC"
             }
-          }
+          },
+          "required": [
+            "store"
+          ]
         },
         "VCQuery": {
           "type": "object",
@@ -193,12 +210,17 @@
         "IVCManagerSaveArgs": {
           "type": "object",
           "properties": {
+            "store": {
+              "type": "string",
+              "description": "VCStore plugin"
+            },
             "vc": {
               "$ref": "#/components/schemas/VerifiableCredential",
               "description": "VC"
             }
           },
           "required": [
+            "store",
             "vc"
           ],
           "description": "Arguments needed for  {@link  VCManager.saveVC  }"

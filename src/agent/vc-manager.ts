@@ -27,26 +27,30 @@ export class VCManager implements IAgentPlugin {
     saveVC: this.saveVC.bind(this),
   }
 
-  private store: AbstractVCStore
+  private storePlugins: Record<string, AbstractVCStore>
 
-  constructor(options: { store: AbstractVCStore }) {
-    this.store = options.store
+  constructor(options: { store: Record<string, AbstractVCStore> }) {
+    this.storePlugins = options.store
   }
 
   public async getVC(args: IVCManagerGetArgs): Promise<IVCManagerGetResult> {
-    const vc = await this.store.get({ id: args.id })
+    if (!this.storePlugins[args.store]) throw new Error('Store not found')
+    const vc = await this.storePlugins[args.store].get({ id: args.id })
     return { vc: vc }
   }
   public async saveVC(args: IVCManagerSaveArgs): Promise<boolean> {
-    const res = await this.store.import(args.vc)
+    if (!this.storePlugins[args.store]) throw new Error('Store not found')
+    const res = await this.storePlugins[args.store].import(args.vc)
     return res
   }
   public async deleteVC(args: IVCManagerDeleteArgs): Promise<boolean> {
-    const res = await this.store.delete({ id: args.id })
+    if (!this.storePlugins[args.store]) throw new Error('Store not found')
+    const res = await this.storePlugins[args.store].delete({ id: args.id })
     return res
   }
   public async listVCS(args: IVCManagerListArgs): Promise<IVCManagerListResult> {
-    let vcs = await this.store.list()
+    if (!this.storePlugins[args.store]) throw new Error('Store not found')
+    let vcs = await this.storePlugins[args.store].list()
     if (args.query) {
       console.log('VCS:', vcs, 'Filtering: ', args.query)
       vcs = vcs.filter((i) => {
